@@ -98,7 +98,7 @@ TBD
 ### users table
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, unique: true, index:true|
+|name|string|null: false, unique: true, index: true|
 |email|string|null: false|
 |password|string|null: false|
 
@@ -110,8 +110,8 @@ Association
 ### posts table
 |Column|Type|Options|
 |------|----|-------|
-|title|text|null: false, index:true|
-|content|texty||
+|title|string|null: false, index:true|
+|content|text||
 |image|text||
 |user_id|references|foreign_key: true, on_delete: :cascade|
 
