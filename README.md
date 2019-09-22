@@ -152,8 +152,8 @@ Association
 - belongs_to :tag
 
 ## Licence
-Copyright (c) 2019 Kazuyuki Kosaka
-Released under the MIT license
+Copyright (c) 2019 Kazuyuki Kosaka  
+Released under the MIT license  
 https://opensource.org/licenses/mit-license.php
 
 ## Author
