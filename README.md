@@ -1,5 +1,4 @@
 # share_your_moments
-====
 
 ## Overview
 This project is implemented to share articles including the photos
@@ -16,8 +15,8 @@ TBD
 Refer to Instagram
 
 ## Requirement
-*Ruby 2.5.1
-*Rails 5.2.3
+* Ruby 2.5.1
+* Rails 5.2.3
 
 ## Usage
 Start your server:
@@ -69,34 +68,34 @@ rake db:seed
 5. Submit a pull request :D
 
 ## Features
-*Articles list page
-*Detail page of each article
-*Editable / Deletable article submission
-*Comments on the article by Ajax
-*User authentication with Devise
-*Dismissable flash notifications
-*Uploading Image files with carrierWave/mini_magic 
-*Pagination with Kaminari
-*Unit Test with RSpec
-*System Tesw with RSpec
+* Articles list page
+* Detail page of each article
+* Editable / Deletable article submission
+* Comments on the article by Ajax
+* User authentication with Devise
+* Dismissable flash notifications
+* Uploading Image files with carrierWave/mini_magic 
+* Pagination with Kaminari
+* Unit Test with RSpec
+* System Tesw with RSpec
 
 ## Test
 Test is run by excuting the following commands.
 
-*Unit Test
+- Unit Test
 
 ```bash
 TBD
 ```
 
-*System Test
+- System Test
 
 ```bash
 TBD
 ```
 
 ## DB schema
-*users table
+### users table
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false, unique: true, index:true|
@@ -108,7 +107,7 @@ Association
 - has_many :posts
 
 
-*posts table
+### posts table
 |Column|Type|Options|
 |------|----|-------|
 |title|text|null: false, index:true|
@@ -122,7 +121,7 @@ Association
 - has_many :posts_tags
 - has_many :tags, through: :posts_tags
 
-*comments table
+### comments table
 |Column|Type|Options|
 |------|----|-------|
 |text|text|null: false|
@@ -133,7 +132,7 @@ Associtation
 - belongs_to :user
 - belongs_to :post
 
-*tags table
+### tags table
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
@@ -142,7 +141,7 @@ Association
 - has_many :posts_tags
 - has_many :posts, through: :posts_tags
 
-*posts_tags
+### posts_tags
 |Column|Type|Options|
 |------|----|-------|
 |post_id|references|foreign_key: true, on_delete: :cascade|
