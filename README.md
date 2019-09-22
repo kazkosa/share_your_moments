@@ -80,7 +80,7 @@ rake db:seed
 * System Tesw with RSpec
 
 ## Test
-Test is run by excuting the following commands.
+Test runs by executing the following command
 
 - Unit Test
 
