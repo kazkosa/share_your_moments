@@ -28,8 +28,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-
+gem 'mini_magick'
+gem 'carrierwave'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -51,8 +51,6 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
@@ -71,3 +69,12 @@ gem 'jquery-ui-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'haml-rails'
 gem "font-awesome-rails"
+
+group :development, :test do
+	gem 'byebug', platform: :mri
+	gem 'rspec-rails', '~> 3.5'
+	gem 'rails-controller-testing'
+	gem 'factory_bot_rails'
+	gem 'faker'
+  gem 'capybara', '>= 2.15'
+end
