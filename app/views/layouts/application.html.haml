@@ -7,29 +7,10 @@
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag "https://fonts.googleapis.com/css?family=Pacifico&display=swap"
     / Required meta tags
     %meta{:charset => "utf-8"}/
     %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}/
   %body
-    %nav.navbar.navbar-expand-md.navbar-light.bg-white.border-bottom.shadow-sm.p-2.mb-5.bg-white.roundeds.fixed-top
-      = link_to root_path, class: "navbar-brand" do
-        = image_tag '/Logo.png', height:"47px",width:"auto"
-      %button.navbar-toggler{type: "button", data:  {target:  "#navbarSupportedContent", toggle: "collapse"}, aria: { controls: "navbarSupportedContent", expanded: "false" , label: "Toggle navigation"} }
-        %span.navbar-toggler-icon
-      #navbarSupportedContent.collapse.navbar-collapse
-        %ul.navbar-nav.ml-md-auto
-          %li.nav-item.active
-            = link_to "", class: "nav-link mr-5" do
-              =fa_icon "user-o" ,class: "menu-bar-icon fa-2x"
-              %span.sr-only (current)
-          %li.nav-item.dropdown.active
-            = link_to "", {class:"nav-link mr-5", id:"navbar", aria:{expanded: false}, aria:{haspopup: true},data: {toggle: "dropdown"}, role: "button" } do
-              =fa_icon "plus-square-o" ,class: "menu-bar-icon fa-2x"
-            .dropdown-menu{aria: { labelledby: "navbarDropdown"}}
-              %span.dropdown-item New Create
-              .dropdown-divider
-              = link_to "Posts", "", class:"dropdown-item"
-          %li.nav-item.active
-            = link_to "", {class: "nav-link mr-3" ,role: "button"} do
-              =fa_icon "sign-out" ,class: "menu-bar-icon fa-2x "
+    /= render 'layouts/notifications'
     = yield
