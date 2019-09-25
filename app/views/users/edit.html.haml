@@ -1,0 +1,22 @@
+.userform
+  .userform_inner
+    %p.project-title Share Your Moments
+    %h5.page-target Edit Account
+    = form_for(current_user) do |f|
+      .field
+        = f.label :name
+        %br/
+        = f.text_field :name, autofocus: true, id: "edit_name"
+      .field
+        = f.label :email
+        %br/
+        = f.email_field :email, autofocus: true, autocomplete: "email", id: "edit_email"
+      .field.new-avatr-field
+        = f.label :avatar
+        %br/
+        = f.file_field :avatar, class: "new-avatar"
+      .actions
+        = f.submit "Update",class:"submit btn btn-outline-primary"
+    %span
+      Not need to exchange?
+    = link_to "Go Back",:back , class: "back"

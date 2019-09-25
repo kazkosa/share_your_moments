@@ -82,17 +82,32 @@ rake db:seed
 ## Test
 Test runs by executing the following command
 
-- Unit Test
+- Model Test
 
 ```bash
-TBD
+bundle exec rspec spec/models/user_spec.rb
+```
+
+- Controller Test
+
+```bash
+bundle exec rspec spec/controllers/users_controller_spec.rb
 ```
 
 - System Test
 
 ```bash
-TBD
+bundle exec rspec spec/features/user_spec.rb
 ```
+
+- All Test at once
+
+```bash
+bundle exec rspec spec/features/user_spec.rb
+```
+
+
+
 
 ## DB schema
 ### users table
