@@ -1,6 +1,9 @@
 @import "config/reset";
+@import "config/colors";
 @import "font-awesome";
 @import "bootstrap";
 @import "modules/posts";
 @import "common/header";
-@import "common/icon.scss"
+@import "common/icon";
+@import "modules/users";
+@import "modules/flash";
