@@ -1,0 +1,26 @@
+= render "devise/shared/nav"
+.spacing
+.contents.row
+  .container
+    %h5
+      Create a new Airticle
+    = form_with model:@post , local:true do |f|
+      -# = form_with scope: :session , local:true ,url:new_step3_posts_path do |f|
+      -# = form_with scope: :session , local:true ,url:new_step2_posts_path do |f|
+      -# .field.newpost
+      -#   = f.label :title
+      -#   %br/
+      -#   = f.text_field :title, autofocus: true, placeholder: "Title", required: true, class: "post__title"
+      -# .field.newpost
+      -#   = f.label :content
+      -#   %br/
+      -#   = f.text_area :content, autofocus: true, placeholder: "content", required: true, class: "post__content"
+      -# .field.newpost
+      -#   = f.label :image
+      -#   %br/
+        -# = f.file_field :image, class: "new-image"
+        = f.hidden_field :image, value: @post.image
+        = f.hidden_field :image_cache, value: @post.image_cache
+        -# =image_tag @post.image.url
+      .actions
+        = f.submit "New Post", class:"submit btn"

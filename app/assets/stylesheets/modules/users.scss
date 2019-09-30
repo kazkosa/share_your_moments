@@ -2,7 +2,7 @@
   background:white;
   max-width:400px;
   padding:0;
-  margin:20px auto;
+  margin:10px auto;
   box-shadow: 10px 10px 10px rgba(0,0,0,0.4); 
   border:solid 1px darkgrey; 
   position:  relative;            /* 位置指定 */
@@ -37,6 +37,7 @@
         label{
           margin:0;
         }
+        @include avatar_call();
         input{
           padding:0.3em;
           margin:0;

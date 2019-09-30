@@ -1,0 +1,75 @@
+= render "devise/shared/nav"
+.post-main
+  .post-main__new_inner
+    .post-main__new_inner__contents
+      %h5.create-new-article
+        Create a new airticle
+      = form_with model:@post ,local:true do |f|  
+        / In case of validate error
+        - if @post.errors.any?
+          .post-form__errors
+            %h2= "Error has occurred. total: #{@post.errors.full_messages.count}"
+            %ul
+              - @post.errors.full_messages.each do |message|
+                %li= message
+        / Select an image
+        .field.newpost_image
+          .image_box_for_edit
+            .image_box_inner
+              - if @post.image.url
+                = image_tag @post.image.url ,id:"current_image_for_edit"
+              - else
+                .dummy_post_box
+                  No image
+          .input_post_wrapper
+            / Display the image selected by user 
+            .input_box.step1
+              = f.label "Select an image file"
+              %br/
+              = f.file_field :image, class: "new-image", required: true
+              = f.hidden_field :image_cache
+              %br/
+            / Select an effect to image
+            .input_box.step2
+              = f.label "Image retouch"
+              %br/
+              = f.select(:image_option, [["Normal","normal"], ["1977","1977"],	["Aden","aden"],	["Amaro","amaro"],	["Ashby","ashby"],	["Brannan","brannan"],	["Brooklyn","brooklyn"],	["Charmes","charmes"],	["Clarendon","clarendon"],	["Crema","crema"],	["Dogpatch","dogpatch"],	["Earlybird","earlybird"],	["Gingham","gingham"],	["Ginza","ginza"],	["Hefe","hefe"],	["Helena","helena"],	["Hudson","hudson"],	["Inkwell","inkwell"],	["Kelvin","kelvin"],	["Kuno","kuno"],	["Lark","lark"],	["Lo-Fi","lo-Fi"],	["Ludwig","ludwig"],	["Maven","maven"],	["Mayfair","mayfair"],	["Moon","moon"],	["Nashville","nashville"],	["Perpetua","perpetua"],	["Poprocket","poprocket"],	["Reyes","reyes"],	["Rise","rise"],	["Sierra","sierra"],	["Skyline","skyline"],	["Slumber","slumber"],	["Stinson","stinson"],	["Sutro","sutro"],	["Toaster","toaster"],	["Valencia","valencia"],	["Vesper","vesper"],	["Walden","walden"],	["Willow","willow"],	["X-Pro II","x-Pro II"]],{selected:"Normal"},{class:"custom-select picarrange-select image_option_box"})
+            / Enter the information exclude image file
+            .input_box.step3
+              .field.newpost_title
+                = f.label :title
+                %br/
+                = f.text_field :title, autofocus: true, placeholder: "Title", required: true, class: "post_title"
+              .field.newpost.content
+                = f.label :content
+                %br/
+                = f.text_area :content, autofocus: true, placeholder: "Attach a message to the image!",  class: "post_content",size: "32x3"
+              .field.newpost.snaparea
+                = f.label :location
+                %br/
+                = f.text_field :location, id:"address", autofocus: true, placeholder: "photo location", class: "post_location"
+            / final confirmation before posting
+            .input_box.confirm
+              .map#map
+        / each switches to state transition
+        .select_step.step1
+          = link_to root_path, class:"btn_map submit btn btn-outline-primary post_cancel" do
+            Cancel
+          .btn_map.submit.btn.btn-outline-primary.to_step2
+            Next
+        .select_step.step2
+          .btn_map.submit.btn.btn-outline-primary.to_step1
+            Back
+          .btn_map.submit.btn.btn-outline-primary.to_step3
+            Next
+        .select_step.step3
+          .btn_map.submit.btn.btn-outline-primary.to_step2
+            Back
+          .btn_map.submit.btn.btn-outline-primary.to_confirm#map_confirm
+            Confirm
+        .select_step.confirm
+          .btn_map.submit.btn.btn-outline-primary.to_step3
+            Back
+          .actions
+            = f.submit "Post", class:"btn_map submit btn btn-outline-primary"
+        

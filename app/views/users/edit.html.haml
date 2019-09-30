@@ -1,3 +1,5 @@
+= render "devise/shared/nav"
+.spacing
 .userform
   .userform_inner
     %p.project-title Share Your Moments
@@ -14,7 +16,6 @@
       .field.new-avatr-field
         = f.label :avatar
         %br/
-        = f.file_field :avatar, class: "new-avatar"
       .actions
         = f.submit "Update",class:"submit btn btn-outline-primary"
     %span
