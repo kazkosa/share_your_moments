@@ -34,73 +34,42 @@
             
     
             -# - if @comments#あとで復活
-            - if @post#あとで消す
-              .comment-list
-                -# - @comments.each do |comment|#あとで復活
-                -if  @post#あとで消す
-                  .user_box
-                    .user_box_wrapper
-                      - if @post.user.avatar.attached?
-                        .avatar_box
-                          .avatar_box_inner
-                            -# = image_tag comment.user.avatar ,class:"avatar_image"#あとで復活
-                            = image_tag @post.user.avatar ,class:"avatar_image" #あとでけす
-                      .comment_box_main
-                        .comment_box_main__name
-                          -# = comment.user.name あとで復活
-                          = current_user.name#あとでけす
-                        .comment_box_main__text
-                          -# =comment.message  あとで復活
-                          Great 
-                        .comment_box_main__timestamp
-                          -# =comment.created_at.strftime("%Y/%m/%d %H:%M")#あとで復活
-                          =@post.created_at.strftime("%Y/%m/%d %H:%M")#あとでけす
-                -if  @post#あとで消す　
-                  .user_box
-                    .user_box_wrapper
-                      - if @post.user.avatar.attached?
-                        .avatar_box
-                          .avatar_box_inner
-                            -# = image_tag comment.user.avatar ,class:"avatar_image"#あとで復活
-                            = image_tag @post.user.avatar ,class:"avatar_image" #あとでけす
-                      .comment_box_main
-                        .comment_box_main__name
-                          -# = comment.user.name あとで復活
-                          = current_user.name#あとでけす
-                        .comment_box_main__text
-                          -# =comment.message  あとで復活
-                          Great 
-                        .comment_box_main__timestamp
-                          -# =comment.created_at.strftime("%Y/%m/%d %H:%M")#あとで復活
-                          =@post.created_at.strftime("%Y/%m/%d %H:%M") #あとで消す
-                -if  @post#あとで消す　
-                  .user_box
-                    .user_box_wrapper
-                      - if @post.user.avatar.attached?
-                        .avatar_box
-                          .avatar_box_inner
-                            -# = image_tag comment.user.avatar ,class:"avatar_image"#あとで復活
-                            = image_tag @post.user.avatar ,class:"avatar_image" #あとでけす
-                      .comment_box_main
-                        .comment_box_main__name
-                          -# = comment.user.name あとで復活
-                          = current_user.name#あとでけす
-                        .comment_box_main__text
-                          -# =comment.message  あとで復活
-                          Great 
-                        .comment_box_main__timestamp
-                          -# =comment.created_at.strftime("%Y/%m/%d %H:%M")#あとで復活
-                          =@post.created_at.strftime("%Y/%m/%d %H:%M") #あとで消す
+              -# - if @post#あとで消す
+            .comment-list
+              - @comments.each do |comment|#あとで復活
+                -# -if  @post#あとで消す
+                .user_box
+                  .user_box_wrapper
+                    - if comment.user.avatar.attached?
+                      .avatar_box
+                        .avatar_box_inner
+                          = image_tag comment.user.avatar ,class:"avatar_image"#あとで復活
+                          -# = image_tag @post.user.avatar ,class:"avatar_image" #あとでけす
+                    - else
+                      .avatar_box
+                        .avatar_box_inner__non-avatar
+                          =fa_icon "user-circle",class:"fa-2x non-avatar"
+                    .comment_box_main
+                      .comment_box_main__name
+                        = comment.user.name #あとで復活
+                        -# = current_user.name#あとでけす
+                      .comment_box_main__text<
+                        =comment.text#あとで復活
+                        -# Great 
+                      .comment_box_main__timestamp
+                        =comment.created_at.strftime("%Y/%m/%d %H:%M")#あとで復活
+                        -# =@post.created_at.strftime("%Y/%m/%d %H:%M")#あとでけす
+               
           .evaluate_box
 
           .comment_form
-            = form_for [@post,@comment] do |f|
+            = form_for [@post,@comment] , html: {class: "new__message"} do |f|
               .field.entercomment
                 = f.text_area :text, autofocus: true, placeholder: "Message", required: true, class: "message__content"
               .actions.commentbtn
                 = f.submit "Send", class:"btn btn-secondary", id:"comment_post"
+      /each switches to state transition
       - if user_signed_in? && current_user.id == @post.user_id
-        /each switches to state transition
         .select_step
           =link_to "Edit", edit_post_path(@post), class:"btn_map submit btn btn-outline-primary"
           %button.btn.btn-outline-primary{data: { toggle:"modal", target:"#exampleModal" } } Delete
