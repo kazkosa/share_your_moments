@@ -78,3 +78,4 @@ group :development, :test do
 	gem 'faker'
   gem 'capybara', '>= 2.15'
 end
+gem 'dotenv-rails'

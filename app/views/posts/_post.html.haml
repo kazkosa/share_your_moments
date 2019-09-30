@@ -1,0 +1,11 @@
+%li.post-main__inner__container__list__wrapper__article-box
+  = link_to post_path(post), class: "post-main__inner__container__list__wrapper__article-box__link" do
+    .post-main__inner__container__list__wrapper__article-box__link__inbox
+      = image_tag post.image.url, class: "post-main__inner__container__list__wrapper__article-box__link__inbox__img filter-#{post.image_option}"
+      .mask
+        .caption
+          =fa_icon "heart",class:"fa-lg"
+          xxx
+          &nbsp
+          =fa_icon "comment",class:"fa-lg"
+          xxx

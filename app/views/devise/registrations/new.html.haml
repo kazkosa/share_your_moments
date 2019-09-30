@@ -10,7 +10,6 @@
       .field
         = f.label :email
         = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email address', id: "registration_email"
-
       .field
         = f.label :password
         - if @minimum_password_length
@@ -25,6 +24,8 @@
       .field.new-avatar-field
         = f.label :avatar
         %br/
+        .avatar_box.for_edit
+          .avatar_box_inner{style: "height:0px;"}
         = f.file_field :avatar, class: "new-avatar"
       .actions
         = f.submit "Sign up",class:"submit btn btn-outline-primary"

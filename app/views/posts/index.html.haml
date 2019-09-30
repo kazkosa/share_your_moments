@@ -4,52 +4,5 @@
     .post-main__inner__container
       .post-main__inner__container__list
         %ul.post-main__inner__container__list__wrapper
-          %li.post-main__inner__container__list__wrapper__article-box
-            = link_to "", class: "post-main__inner__container__list__wrapper__article-box__link" do
-              .post-main__inner__container__list__wrapper__article-box__link__inbox
-                = image_tag "https://ptl.imagegateway.net/contents/original/phototech/genre/railway/01/img/01/tazawako.jpg", class: "post-main__inner__container__list__wrapper__article-box__link__inbox__img"
-                .mask
-                  .caption
-                    ♡ xxx  💬 xxx
-          %li.post-main__inner__container__list__wrapper__article-box
-            = link_to "", class: "post-main__inner__container__list__wrapper__article-box__link" do
-              .post-main__inner__container__list__wrapper__article-box__link__inbox
-                = image_tag "https://dvrs04bx77b2x.cloudfront.net/uranaru/item/image/normal/59a8e031-b080-4b73-926a-7da19c9f13cb.jpg", class: "post-main__inner__container__list__wrapper__article-box__link__inbox__img"
-                .mask
-                  .caption
-                    ♡ xxx  💬 xxx
-          %li.post-main__inner__container__list__wrapper__article-box
-            = link_to "", class: "post-main__inner__container__list__wrapper__article-box__link" do
-              .post-main__inner__container__list__wrapper__article-box__link__inbox
-                = image_tag "https://img-cdn.guide.travel.co.jp/article/582/20150615130615/94B095D69ED64201B96B4CEB604F0E07_L.jpg", class: "post-main__inner__container__list__wrapper__article-box__link__inbox__img"
-                .mask
-                  .caption
-                    ♡ xxx  💬 xxx
-          %li.post-main__inner__container__list__wrapper__article-box
-            = link_to "", class: "post-main__inner__container__list__wrapper__article-box__link" do
-              .post-main__inner__container__list__wrapper__article-box__link__inbox
-                = image_tag "https://img.co-trip.jp/content/14renewal_images_l/20446/main_image.jpg", class: "post-main__inner__container__list__wrapper__article-box__link__inbox__img"
-                .mask
-                  .caption
-                    ♡ xxx  💬 xxx
-          %li.post-main__inner__container__list__wrapper__article-box
-            = link_to "", class: "post-main__inner__container__list__wrapper__article-box__link" do
-              .post-main__inner__container__list__wrapper__article-box__link__inbox
-                = image_tag "https://api-radio.niwaka-ksm.com/images/1_propose/1-7-0-3/02.jpg", class: "post-main__inner__container__list__wrapper__article-box__link__inbox__img"
-                .mask
-                  .caption
-                    ♡ xxx  💬 xxx
-          %li.post-main__inner__container__list__wrapper__article-box
-            = link_to "", class: "post-main__inner__container__list__wrapper__article-box__link" do
-              .post-main__inner__container__list__wrapper__article-box__link__inbox
-                = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyPvLPPqj0jzd2cQhcnUQn_FKCcK6SsqH0jmMrfGqNlr86P290", class: "post-main__inner__container__list__wrapper__article-box__link__inbox__img"
-                .mask
-                  .caption
-                    ♡ xxx  💬 xxx
-          %li.post-main__inner__container__list__wrapper__article-box
-            = link_to "", class: "post-main__inner__container__list__wrapper__article-box__link" do
-              .post-main__inner__container__list__wrapper__article-box__link__inbox
-                = image_tag "https://bridal-kensaku.com/lovemari/wp-content/uploads/2019/05/c6883a455d87b13d4971b2aab5a58769_m-860x562.jpg", class: "post-main__inner__container__list__wrapper__article-box__link__inbox__img"
-                .mask
-                  .caption
-                    ♡ xxx  💬 xxx
+          =render partial: "post", collection: @posts
+        = paginate(@posts)
