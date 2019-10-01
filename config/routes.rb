@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root 'posts#index'
   resources :users,   only: [:edit, :update]
   resources :posts,   only: [:index, :new, :create, :edit, :update, :destroy, :show] do
-    resources :comments, only: [:new, :create]
-    resources :likes,    only: [:create,:destroy]
+    resources :comments,  only: [:new, :create]
+    resources :likes,     only: [:create,:destroy]
+    resources :favorites, only: [:create,:destroy]
   end
 end
