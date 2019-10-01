@@ -77,7 +77,7 @@ rake db:seed
 * Uploading Image files with carrierWave/mini_magic 
 * Pagination with Kaminari
 * Unit Test with RSpec
-* System Tesw with RSpec
+* System Test with RSpec
 
 ## Test
 Test runs by executing the following command
@@ -118,23 +118,26 @@ bundle exec rspec spec/features/user_spec.rb
 |password|string|null: false|
 
 Association
-- has_many :comments
 - has_many :posts
-
+- has_many :comments,:dependent => :delete_all
+- has_many :likes,:dependent => :delete_all
 
 ### posts table
 |Column|Type|Options|
 |------|----|-------|
 |title|string|null: false, index:true|
-|content|text||
-|image|text||
+|content|text|null:false|
+|image|text|null:false|
+|image_option|string||
 |user_id|references|foreign_key: true, on_delete: :cascade|
+|location|string||
 
 Association
 - belongs_to :user
-- has_many :comments
 - has_many :posts_tags
 - has_many :tags, through: :posts_tags
+- has_many :comments,:dependent => :delete_all
+- has_many :likes,:dependent => :delete_all
 
 ### comments table
 |Column|Type|Options|
@@ -165,6 +168,16 @@ Association
 Association
 - belongs_to :post
 - belongs_to :tag
+
+### likes table
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|foreign_key: true, on_delete: :cascade|
+|post_id|references|foreign_key: true, on_delete: :cascade|
+
+Associtation
+- belongs_to :user
+- belongs_to :post
 
 ## Licence
 Copyright (c) 2019 Kazuyuki Kosaka  

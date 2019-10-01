@@ -53,14 +53,27 @@
                         =comment.text
                       .comment_box_main__timestamp
                         =comment.created_at.strftime("%Y/%m/%d %H:%M")
+                        
           /evaluate info
           .evaluate_box
+            .reader_info.like_btn{data: { like: "#{@like}"} }
+              .off-to-on{style:"display:none;"}
+                .like_link
+                  = link_to post_likes_path(@post),  {method:"post", remote: true} do
+                    = fa_icon "heart-o",   class:"fa-lg icon-like"          
+              .on-to-off{style:"display:none;"}
+                .like_link
+                  = link_to post_like_path(@post,current_user), {method:"delete", remote: true} do
+                    = fa_icon "heart", class:"fa-lg icon-like"
+
+            .reader_info.comment-state{data: { written: @post.comments.find_by(user_id:current_user.id ) } }
+              .commnet-notyet{style:"display:none;"}
+                = fa_icon "comment-o",class:"fa-lg icon-comm"
+              .commnet-already{style:"display:none;"}
+                = fa_icon "comment",class:"fa-lg icon-comm"
+
             .reader_info
-              = fa_icon "heart-o",class:"fa-lg"
-            .reader_info
-              = fa_icon "comment-o",class:"fa-lg"
-            .reader_info
-              = fa_icon "star-o",class:"fa-lg"
+              = fa_icon "star-o",class:"fa-lg icon-favo"
           /comment form
           .comment_form
             = form_for [@post,@comment] , html: {class: "new__message"} do |f|

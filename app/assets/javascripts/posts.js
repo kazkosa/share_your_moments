@@ -156,4 +156,14 @@ $(function(){
     e.preventDefault();
     $('#map').toggle("slow");
   });
+  
+  // Initial set of commnet status when user visit show page
+  if($(".comment-state").data("written")){
+    $(".commnet-notyet").hide();
+    $(".commnet-already").show();
+  }else{
+    $(".commnet-already").hide();
+    $(".commnet-notyet").show();
+  }
+
 });

@@ -4,8 +4,15 @@
       = image_tag post.image.url, class: "post-main__inner__container__list__wrapper__article-box__link__inbox__img filter-#{post.image_option}"
       .mask
         .caption
-          =fa_icon "heart",class:"fa-lg"
-          xxx
+          - if post.likes.find_by(user_id:current_user.id)
+            =fa_icon "heart",class:"fa-lg"
+          - else
+            =fa_icon "heart-o",class:"fa-lg"
+          = post.likes.count
           &nbsp
-          =fa_icon "comment",class:"fa-lg"
+          - if post.comments.find_by(user_id:current_user.id)
+            =fa_icon "comment",class:"fa-lg"
+          - else 
+            =fa_icon "comment-o",class:"fa-lg"
+          
           = post.comments.count
