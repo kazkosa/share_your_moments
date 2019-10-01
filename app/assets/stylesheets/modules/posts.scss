@@ -192,7 +192,23 @@ body{
             border-top:1px solid lightgray;
             height:80px;
             display:flex;
-            justify-content:space-around
+            justify-content:space-around;
+            padding:10px;
+            .icon-like{
+              color:pink;
+              text-decoration:none;
+            }
+            .icon-comm{
+              color:grey;
+              cursor:default
+            }
+            .icon-favo{
+              color:khaki;
+              cursor:default;
+            }
+            .icon-like:hover{
+              color:palevioletred;
+            }
           }
 
           .comment_form{
