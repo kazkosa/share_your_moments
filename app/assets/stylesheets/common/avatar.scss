@@ -9,6 +9,7 @@
       position:relative;
       overflow:hidden;
       border-radius:50%;        
+  
       .avatar_image{
         position: absolute;
         top: 50%;
@@ -16,8 +17,14 @@
         -webkit-transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
-        width: 100%;
-        height: auto;      
+        width: 160%;
+        height: auto;    
+      } 
+    }
+    .avatar_box_inner__non-avatar{
+      height:45px;
+      width:45px;
+      .non-avatar{
       }
     }
   }

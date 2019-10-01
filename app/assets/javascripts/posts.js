@@ -1,5 +1,5 @@
 $(function(){
-
+  // Get the geodata by using Google Map Api
   function initMap(){
     var myLatLng = {lat: 35.658581, lng: 139.745433};
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -45,9 +45,6 @@ $(function(){
       $("#map").css("display","none");
     }
   }
-
-
-
 
   //Display the image When a user select one
   function readURL(input) {
@@ -99,15 +96,6 @@ $(function(){
       alert("You havn't select an image file yet.Select one!");
     }
   });
-  if(document.URL.match(/.+\/posts\/.+\/edit/)){
-    $(".step1").css("display","none");
-    $(".step2").css("display","block");
-    $(".step3").css("display","none");
-    $(".confirm").css("display","none");
-    $(".step2.select_step").css("display","flex");
-
-  }
-
 
   $(".to_step3").on("click",function(e){
     e.preventDefault();
@@ -154,7 +142,16 @@ $(function(){
       alert("Enter the Content");
     }
   });
+  //Only use on edit an article process(almost equal to Create processe exclude nothing step1)
+  if(document.URL.match(/.+\/posts\/.+\/edit/)){
+    $(".step1").css("display","none");
+    $(".step2").css("display","block");
+    $(".step3").css("display","none");
+    $(".confirm").css("display","none");
+    $(".step2.select_step").css("display","flex");
+  }
 
+  //Map ON/OFF switch
   $(".swithmap").on("click",function(e){
     e.preventDefault();
     $('#map').toggle("slow");
