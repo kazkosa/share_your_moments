@@ -24,7 +24,7 @@
                 = @post.title
               .article_box__content= @post.content
               .article_box__timestamp
-                = @post.created_at.strftime("%Y/%m/%d %H:%M")
+                = @post.created_at.to_s
               -if @post.location
                 .article_box__location
                   Photo location:
@@ -52,28 +52,36 @@
                       .comment_box_main__text<
                         =comment.text
                       .comment_box_main__timestamp
-                        =comment.created_at.strftime("%Y/%m/%d %H:%M")
+                        =comment.created_at.to_s 
                         
           /evaluate info
           .evaluate_box
-            .reader_info.like_btn{data: { like: "#{@like}"} }
+            .reader_info.like_btn{data: { like: @like  } }
               .off-to-on{style:"display:none;"}
                 .like_link
                   = link_to post_likes_path(@post),  {method:"post", remote: true} do
                     = fa_icon "heart-o",   class:"fa-lg icon-like"          
               .on-to-off{style:"display:none;"}
                 .like_link
-                  = link_to post_like_path(@post,current_user), {method:"delete", remote: true} do
+                  = link_to post_like_path(@post), {method:"delete", remote: true} do
                     = fa_icon "heart", class:"fa-lg icon-like"
 
-            .reader_info.comment-state{data: { written: @post.comments.find_by(user_id:current_user.id ) } }
+            .reader_info.comment-state{data: { written: @comments.find_by(user_id:current_user.id ) } }
               .commnet-notyet{style:"display:none;"}
                 = fa_icon "comment-o",class:"fa-lg icon-comm"
               .commnet-already{style:"display:none;"}
                 = fa_icon "comment",class:"fa-lg icon-comm"
 
-            .reader_info
-              = fa_icon "star-o",class:"fa-lg icon-favo"
+            .reader_info.favorite-state{data:{ favorite: @favorite} }
+              .favorite-notyet{style:"display:none;"}
+                .favo_link
+                  = link_to post_favorites_path(@post),  {method:"post", remote: true} do
+                    = fa_icon "star-o",class:"fa-lg icon-favo"
+              .favorite-already{style:"display:none;"}
+                .favo_link
+                  = link_to post_favorite_path(@post),  {method:"delete", remote: true} do
+                    = fa_icon "star",class:"fa-lg icon-favo"
+
           /comment form
           .comment_form
             = form_for [@post,@comment] , html: {class: "new__message"} do |f|

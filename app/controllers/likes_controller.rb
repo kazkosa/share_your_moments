@@ -8,7 +8,7 @@ class LikesController < ApplicationController
 
     #Get the article record as same as clicked again to use on the view side
     @post = Post.find_by(id: @like.post_id)
-
+    
     #Get the number of records of the current article from the Likes table to use on the viw side.
     @like_count = Like.where(post_id: params[:post_id]).count
   end 
