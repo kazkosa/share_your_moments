@@ -107,8 +107,6 @@ bundle exec rspec spec/features/user_spec.rb
 ```
 
 
-
-
 ## DB schema
 ### users table
 |Column|Type|Options|
@@ -121,6 +119,8 @@ Association
 - has_many :posts
 - has_many :comments,:dependent => :delete_all
 - has_many :likes,:dependent => :delete_all
+- has_many :favorites,:dependent => :delete_all
+
 
 ### posts table
 |Column|Type|Options|
@@ -138,6 +138,8 @@ Association
 - has_many :tags, through: :posts_tags
 - has_many :comments,:dependent => :delete_all
 - has_many :likes,:dependent => :delete_all
+- has_many :favorites,:dependent => :delete_all
+
 
 ### comments table
 |Column|Type|Options|
@@ -150,6 +152,7 @@ Associtation
 - belongs_to :user
 - belongs_to :post
 
+
 ### tags table
 |Column|Type|Options|
 |------|----|-------|
@@ -158,6 +161,7 @@ Associtation
 Association
 - has_many :posts_tags
 - has_many :posts, through: :posts_tags
+
 
 ### posts_tags
 |Column|Type|Options|
@@ -178,6 +182,18 @@ Association
 Associtation
 - belongs_to :user
 - belongs_to :post
+
+
+### favorites table
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|foreign_key: true, on_delete: :cascade|
+|post_id|references|foreign_key: true, on_delete: :cascade|
+
+Associtation
+- belongs_to :user
+- belongs_to :post
+
 
 ## Licence
 Copyright (c) 2019 Kazuyuki Kosaka  
