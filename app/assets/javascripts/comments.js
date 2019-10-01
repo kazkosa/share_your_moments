@@ -20,8 +20,6 @@ $(function(){
         </div>
       </div>   
     `;
-    console.log(html);
-    console.log("Good Good Good")
     $(".comment-list").append(html);
   }
 
@@ -29,11 +27,9 @@ $(function(){
   $(".new__message").on("submit", function(e){
     e.preventDefault();
     var input = $(".message__content").val().replace(/\r|\n|\r\n/g, '<br>');
-    console.log(input);
-    console.log(this);
     var formData = new FormData(this);
     var url = $(this).attr("action");
-    console.log(url);
+
     $.ajax({
       url: url,
       type: "POST",
@@ -43,30 +39,22 @@ $(function(){
       contentType: false
     })
     .done(function(data){
-      
-      console.log("Communicate Good");
-      console.log(data.text);
-      console.log(data.created_at);
-      console.log(data);
-      console.log(data.user_avatar);
-      
+      //'if branch' is set to reject the case which the submit btn pressed unless user have nothing enter the comment
       if(data){
         buildHTML(data);
-
-        
         var target = $(".user_box").last();
         var position = target.offset().top + $(".article_and_comment_box").scrollTop();
         $(".article_and_comment_box").animate({scrollTop: position}, 300, 'swing');
-        
       }
       else{
-        alert("Reject by Irregular comment");
+        alert("Reject by Irregular comment"); 
       }
-
+      //form reset
       $("#new_comment")[0].reset();
       $("#comment_post").removeAttr("disabled");
     })
     .fail(function(){
+      //500 
       alert("Error");
     })
 

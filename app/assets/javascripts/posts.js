@@ -1,5 +1,5 @@
 $(function(){
-
+  // Get the geodata by using Google Map Api
   function initMap(){
     var myLatLng = {lat: 35.658581, lng: 139.745433};
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -45,9 +45,6 @@ $(function(){
       $("#map").css("display","none");
     }
   }
-
-
-
 
   //Display the image When a user select one
   function readURL(input) {

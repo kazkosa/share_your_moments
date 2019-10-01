@@ -4,11 +4,9 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = Comment.new(comment_params)
-    # binding.pry
 
     respond_to do |format|
       if @comment.save
-        # binding.pry
         format.html {redirect_to post_path(@post), notice:"commented"}
         format.json
       else
@@ -17,16 +15,6 @@ class CommentsController < ApplicationController
       end
     end
 
-
-    # respond_to do |format|
-      # if @comment.save
-      #   format.html {redirect_to post_path(@post), notice: 'Commented'}
-      #   format.json
-      # else
-      #   format.html {redirect_to post_path(@post), notice: 'Comment rejected'}
-      #   format.json
-      # end
-    # end
   end
 
   private

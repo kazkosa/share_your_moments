@@ -2,12 +2,13 @@
 .post-main
   .post-main__new_inner
     .post-main__new_inner__contents
-      / Select an image
       .field.newpost_image
+        / Show an image
         .image_box_for_edit
           .image_box_inner
             = image_tag @post.image.url ,id:"current_image_for_edit", class: "filter-#{@post.image_option}"
         .input_post_wrapper
+          / auther info
           .user_box
             .user_box_wrapper
               - if @post.user.avatar.attached?
@@ -16,6 +17,7 @@
                     = image_tag @post.user.avatar ,class:"avatar_image" 
               .user_name_box
                 = @post.user.name
+          / article and comment info
           .article_and_comment_box
             .article_box
               .article_box__title
@@ -31,50 +33,49 @@
                 = hidden_field_tag "location", @post.location, id:"address"
                 .article_box__location_map
                   .map#map
-            
-    
-            -# - if @comments#あとで復活
-              -# - if @post#あとで消す
+
             .comment-list
-              - @comments.each do |comment|#あとで復活
-                -# -if  @post#あとで消す
+              - @comments.each do |comment|
                 .user_box
                   .user_box_wrapper
                     - if comment.user.avatar.attached?
                       .avatar_box
                         .avatar_box_inner
-                          = image_tag comment.user.avatar ,class:"avatar_image"#あとで復活
-                          -# = image_tag @post.user.avatar ,class:"avatar_image" #あとでけす
+                          = image_tag comment.user.avatar ,class:"avatar_image"
                     - else
                       .avatar_box
                         .avatar_box_inner__non-avatar
                           =fa_icon "user-circle",class:"fa-2x non-avatar"
                     .comment_box_main
                       .comment_box_main__name
-                        = comment.user.name #あとで復活
-                        -# = current_user.name#あとでけす
+                        = comment.user.name
                       .comment_box_main__text<
-                        =comment.text#あとで復活
-                        -# Great 
+                        =comment.text
                       .comment_box_main__timestamp
-                        =comment.created_at.strftime("%Y/%m/%d %H:%M")#あとで復活
-                        -# =@post.created_at.strftime("%Y/%m/%d %H:%M")#あとでけす
-               
+                        =comment.created_at.strftime("%Y/%m/%d %H:%M")
+          /evaluate info
           .evaluate_box
-
+            .reader_info
+              = fa_icon "heart-o",class:"fa-lg"
+            .reader_info
+              = fa_icon "comment-o",class:"fa-lg"
+            .reader_info
+              = fa_icon "star-o",class:"fa-lg"
+          /comment form
           .comment_form
             = form_for [@post,@comment] , html: {class: "new__message"} do |f|
               .field.entercomment
                 = f.text_area :text, autofocus: true, placeholder: "Message", required: true, class: "message__content"
               .actions.commentbtn
                 = f.submit "Send", class:"btn btn-secondary", id:"comment_post"
-      /each switches to state transition
+      
+      /Display the edit/delete select option only if the article author equal to current_user
       - if user_signed_in? && current_user.id == @post.user_id
         .select_step
           =link_to "Edit", edit_post_path(@post), class:"btn_map submit btn btn-outline-primary"
           %button.btn.btn-outline-primary{data: { toggle:"modal", target:"#exampleModal" } } Delete
 
-<!-- Modal -->
+/ state translate to confirmation only if delete btn on
 .modal.fade#exampleModal{tabindex:"-1",role:"dialog", aria: { labelledby:"exampleModalLabel", hidden:"true"}}
   .modal-dialog{role:"document"}
     .modal-content

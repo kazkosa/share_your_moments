@@ -191,6 +191,8 @@ body{
           .evaluate_box{
             border-top:1px solid lightgray;
             height:80px;
+            display:flex;
+            justify-content:space-around
           }
 
           .comment_form{
