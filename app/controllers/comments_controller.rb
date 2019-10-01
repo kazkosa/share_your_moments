@@ -14,7 +14,6 @@ class CommentsController < ApplicationController
         format.json
       end
     end
-
   end
 
   private

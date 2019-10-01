@@ -1,12 +1,14 @@
 $(function(){
   function buildHTML(data){
+    var html_avatar = data.user_avatar? 
+    `<div class="avatar_box_inner"><img class="avatar_image" src=${data.user_avatar}></div>` 
+    : `<div class="avatar_box_inner__non-avatar"><i class="fa fa-user-circle fa-2x non-avatar"></i></div>`;
+
     var html = `
       <div class="user_box">
         <div class="user_box_wrapper">
           <div class="avatar_box">
-            <div class="avatar_box_inner">
-              <img class="avatar_image" src=${data.user_avatar}>
-            </div>
+            ${html_avatar}
           </div>
           <div class="comment_box_main">
             <div class="comment_box_main__name">
@@ -41,10 +43,18 @@ $(function(){
     .done(function(data){
       //'if branch' is set to reject the case which the submit btn pressed unless user have nothing enter the comment
       if(data){
+        //build html
         buildHTML(data);
+        
+        //auto scroll
         var target = $(".user_box").last();
         var position = target.offset().top + $(".article_and_comment_box").scrollTop();
         $(".article_and_comment_box").animate({scrollTop: position}, 300, 'swing');
+
+        //comment icon checked
+        $(".commnet-notyet").hide();
+        $(".commnet-already").show();
+
       }
       else{
         alert("Reject by Irregular comment"); 
@@ -57,10 +67,5 @@ $(function(){
       //500 
       alert("Error");
     })
-
-
-
   });
-
-
 });
