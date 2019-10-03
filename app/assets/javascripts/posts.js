@@ -111,6 +111,12 @@ $(function(){
     var content = $(".post_content").val().replace(/\r|\n|\r\n/g, '<br>');
     var location = $(".post_location").val();
     var html_location;
+
+    //hashtag extraction
+    const tags = content.match(/[#＃][Ａ-Ｚａ-ｚA-Za-z一-鿆0-9０-９ぁ-ヶｦ-ﾟー._-\u3005-\u3006]+/gm);
+    //hashtag wrapping
+    var content_repl= content.replace(/[#＃][Ａ-Ｚａ-ｚA-Za-z一-鿆0-9０-９ぁ-ヶｦ-ﾟー._-\u3005-\u3006]+/gm,'<span style="color:darkblue;">$&</span>');
+
     if(location){
       $("#map").css("display","block");
       html_location = `<strong>Photo Location</strong><br><div>  ${location}<br></div>`;
@@ -131,7 +137,7 @@ $(function(){
       var html =`
       <div class="post confirmation">
         <strong>Title</strong><br><div>${title}<br><br></div>
-        <strong>Content</strong><br><div style="overflow:scroll;height:5em;">${content}<br></div>
+        <strong>Content</strong><br><div style="overflow:scroll;height:7em;">${content_repl}<br></div>
         ${html_location}
       </div>
       `;
@@ -164,6 +170,11 @@ $(function(){
   }else{
     $(".commnet-already").hide();
     $(".commnet-notyet" ).show();
+  }
+
+  if($(".article_box__content").length){
+    var show_content= $(".article_box__content").html().replace(/[#＃][Ａ-Ｚａ-ｚA-Za-z一-鿆0-9０-９ぁ-ヶｦ-ﾟー._-\u3005-\u3006]+/gm,'<span style="color:darkblue;">$&</span>');
+    $(".article_box__content").html(show_content);
   }
 
 });

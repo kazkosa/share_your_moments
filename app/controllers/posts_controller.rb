@@ -5,7 +5,6 @@ class PostsController < ApplicationController
   
   def new
     if params[:back]
-      binding.pry
       @post = Post.new(post_params)
       @post.image.retrieve_from_cache! params[:post][:image_cache]
     else
@@ -14,12 +13,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(post_params) 
+    tag_list = @post.content.scan(%r|\s?(#[^\s[　,<br>]]+)\s?|).flatten
     if @post.save
+      @post.save_tags(tag_list)
       redirect_to root_path, notce: 'New airticle has been postted'
     else
       flash.now[:alert] = 'New airticle cannot be postted.'; render :index
-    end
+    end    
   end
 
   def show
@@ -30,9 +31,6 @@ class PostsController < ApplicationController
     @favorite  = @favorites.find_by(user_id: current_user.id)
     @comments = @post.comments
     @comment = Comment.new();
-
-
-
   end
 
   def edit
@@ -42,9 +40,17 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params) if user_signed_in? && @post.user_id == current_user.id
-    redirect_to action: :show, notice: 'The airticle have been updated'
+
+    if user_signed_in? && @post.user_id == current_user.id
+      @post.update(post_params)
+      tag_list = @post.content.scan(%r|\s?(#[^\s[　,<br>]]+)\s?|).flatten
+      @post.save_tags(tag_list)
+      redirect_to action: :show, notice: 'The airticle have been updated'
+    else
+      flash.now[:alert] = 'This airticle cannot be editted.'; render :show
+    end
   end
+  
   def destroy
     @post = Post.find(params[:id])
     @post.destroy if @post.user_id == current_user.id
