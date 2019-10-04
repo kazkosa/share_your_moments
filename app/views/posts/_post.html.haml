@@ -14,5 +14,7 @@
             =fa_icon "comment",class:"fa-lg"
           - else 
             =fa_icon "comment-o",class:"fa-lg"
-          
           = post.comments.count
+          &nbsp
+          - if post.favorites.find_by(user_id:current_user.id)
+            =fa_icon "star",class:"icon-favo fa-lg"
