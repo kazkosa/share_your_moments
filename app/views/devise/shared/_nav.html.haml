@@ -1,4 +1,3 @@
--# %nav.navbar.navbar-expand-md.navbar-light.border-bottom.shadow-sm.p-2.mb-5.bg-white.roundeds.fixed-top
 %nav.navbar.navbar-expand-md.navbar-light.border-bottom.shadow-sm.p-2.mb-5.roundeds.fixed-top
   .navbar_inner
     = link_to root_path, class: "navbar-brand" do
@@ -28,7 +27,7 @@
                   =fa_icon "image",class:"menu-bar-icon fa-lg mr-1"
                   %span.nav-item.active Posts
             %li.nav-item.active
-              = link_to edit_user_path(current_user), class: "nav-link mr-5" do
+              = link_to user_path(current_user), class: "nav-link mr-5" do
                 =fa_icon "user-o" ,class: "menu-bar-icon fa-2x"
                 %span.sr-only (current)
             %li.nav-item.active
