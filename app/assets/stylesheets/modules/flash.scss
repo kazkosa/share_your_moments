@@ -1,5 +1,8 @@
 .notification{
-	z-index:$zindex-modal-backdrop;
+	display:block;
+	position:absolute;
+	z-index:9998;
+	width:100%;
 	.notice {
 		background-color: $light_blue;
 		color: $white;
