@@ -321,16 +321,31 @@ body{
     max-width:935px;
     min-height:calc(100vh - 100px);
     background:white;
+
     &__container{
       padding:6px;
       text-align:center;
       margin:0 auto;
       width:100%;
+
       &__list{
         width:100%;
         margin:0 4px;
         padding:0;
         display:block;
+        
+        .sarch_result{
+          margin:30px 0 0 0;
+          padding:0;
+
+          .search_keyword{
+            font-weight:bold;
+            font-style:italic;
+          }
+          .search_count{
+
+          }
+        }
 
         .pagination{
           color:#111111;
@@ -424,6 +439,9 @@ body{
                     line-height:100%;
                     padding-top:48%;
                     color:white;
+                    .icon-favo{
+                      color:khaki;
+                    }
                   }
                 }
               }

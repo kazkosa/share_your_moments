@@ -17,7 +17,6 @@ $(function(){
       map: map
     });
     var geocoder = new google.maps.Geocoder();
-
     
     document.getElementById("map_confirm").addEventListener('click', function() {
       geocodeAddress(geocoder, map);
@@ -65,14 +64,14 @@ $(function(){
   });
 
 
-  //Select the image effect
+  //Step1, Select the image effect
   $(".image_option_box").on("change",function(e){
     e.preventDefault();
     $("#current_image_for_edit").removeClass();
     var sel ="filter-" + $(this).val();
     $("#current_image_for_edit").addClass(sel);
   });
-
+  //Back to Select the image effect from Step2
   $(".to_step1").on("click",function(e){
     e.preventDefault();
     $(".step1").css("display","block");
@@ -81,7 +80,7 @@ $(function(){
     $(".confirm").css("display","none");
     $(".step1.select_step").css("display","flex");
   });
-
+  //Step2, Next to Step1 or Back from Step3
   $(".to_step2").on("click",function(e){
     e.preventDefault();
     var input = document.querySelector(".new-image");
@@ -96,7 +95,7 @@ $(function(){
       alert("You havn't select an image file yet.Select one!");
     }
   });
-
+  //Step3, Next to Step2 or Back from Confirm
   $(".to_step3").on("click",function(e){
     e.preventDefault();
     $(".step1").css("display","none");
@@ -105,6 +104,7 @@ $(function(){
     $(".confirm").css("display","none");
     $(".step3.select_step").css("display","flex");
   });
+  //Confirm, Next to Step3
   $(".to_confirm").on("click",function(e){
     e.preventDefault();
     var title = $(".post_title").val();
@@ -171,10 +171,57 @@ $(function(){
     $(".commnet-already").hide();
     $(".commnet-notyet" ).show();
   }
-
   if($(".article_box__content").length){
     var show_content= $(".article_box__content").html().replace(/[#＃][Ａ-Ｚａ-ｚA-Za-z一-鿆0-9０-９ぁ-ヶｦ-ﾟー._-\u3005-\u3006]+/gm,'<span style="color:darkblue;">$&</span>');
     $(".article_box__content").html(show_content);
+  }
+
+
+  // Display Search result function 
+  function appendMsgToHTML(text){
+    html = `
+      <li class="searchbox__resultbox__inner__item">
+        ${text}
+      </li>
+    `;
+    $(".searchbox__resultbox__inner").append(html);
+  }
+  function show_search_result(e){
+    e.preventDefault();
+    var input = $(this).val();
+    var url = $(".searchform").attr("action");
+    if(input !=="" ){
+      $.ajax({
+        url: url,
+        type: 'get',
+        data:{keyword: input},
+        dataType:'json'
+      })
+      .done(function(search_results){
+        $(".searchbox__resultbox__inner").empty();
+        if (search_results.length !== 0) {
+          appendMsgToHTML(search_results.length+" posts");
+          $(".searchbox__resultbox").show(500);
+        }
+        else {
+          appendMsgToHTML("No results found");
+          $(".searchbox__resultbox").show(500);
+        }  
+      })
+      .fail(function(){
+        alert("Search error");
+      })
+    }
+  }
+  if( $(".searchbox").length ){
+    $(".search-box-input").on("keyup",show_search_result);
+    $(".search-box-input").focusin(show_search_result);
+    $(document).on('click',   function(e) {
+      if (!$(e.target).closest(".searchbox").length) {
+        $(".searchbox__resultbox").hide(500);
+        $(".searchbox__resultbox__inner").empty();
+      }
+    });
   }
 
 });
