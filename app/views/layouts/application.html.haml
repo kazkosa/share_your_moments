@@ -8,10 +8,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['API_KEY']}"#&callback=initMap" #async defer 
-    -# %script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["API_KEY"]%>&callback=initMap" async defer
-    -# = javascript_include_tag 'application', 'https://maps.googleapis.com/maps/api/js?key=<%= ENV["API_KEY"]%>&callback=initMap': 'reload'
-    -# <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEGGpps3rW4RqjJPQkZi7X2arqmoU-U-k&callback=initMap"
-    = stylesheet_link_tag "https://fonts.googleapis.com/css?family=Pacifico&display=swap"
+    = stylesheet_link_tag "https://fonts.googleapis.com/css?family=Catamaran|Pacifico&display=swap"
     / Required meta tags
     %meta{:charset => "utf-8"}/
     %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}/

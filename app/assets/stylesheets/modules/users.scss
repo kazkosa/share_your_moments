@@ -64,3 +64,117 @@
     top: 0;     /* 位置指定 */
   }
 }
+
+.user_page{
+  margin:74px auto 0 auto;
+  padding:0;
+  max-width:980px;
+
+  .user_page__inner{
+
+    .user_page__inner__show-profile{
+      padding:45px 40px 40px 40px;
+      border-bottom:1px solid lightgrey;
+
+      .user_page__inner__show-profile__wrapper{
+        display:flex;
+
+        .user_page__inner__show-profile__wrapper__avatar-box{
+          box-sizing:border-box;
+          margin:0;
+          padding:0;
+          
+          .user_page__inner__show-profile__wrapper__avatar-box__inner{
+            height:140px;
+            width:140px;
+            position:relative;
+            overflow:hidden;
+            border-radius:50%; 
+
+            .avatar_image{
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              -webkit-transform: translate(-50%, -50%);
+              -ms-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+              width: 160%;
+              height: auto; 
+            }
+          }
+        }
+        .avatar_box{
+          .avatar_box_inner__non-avatar{
+
+          }
+        }
+        .user_page__inner__show-profile__wrapper__right-box{
+          padding:0 0 0 40px;
+          width:60%;
+
+          .user_page__inner__show-profile__wrapper__right-box__profile{
+            width:100%;
+            height:50px;
+            line-height:50px;
+            display:flex;
+            justify-content: space-between;
+
+            .user_page__inner__show-profile__wrapper__right-box__profile__name_box{
+              font-size:30px;
+              font-weight:bold;
+              font-family: 'Catamaran', sans-serif;
+            }
+
+            .user_page__inner__show-profile__wrapper__right-box__profile__edit_box{
+              margin:0 0 0 30px;
+              
+              .edit-btn{
+              }
+            }
+
+            .user_page__inner__show-profile__wrapper__right-box__profile__follow_box{
+              margin:0 0 0 30px;
+            }
+          }
+
+          .user_page__inner__show-profile__wrapper__right-box__status{
+            display:flex;
+            justify-content:space-around;
+            height:30px;
+            line-height:30px;
+            font-family: 'Catamaran', sans-serif;
+            
+            .user_page__inner__show-profile__wrapper__right-box__status__articles{
+            }
+            .user_page__inner__show-profile__wrapper__right-box__status__followers{
+            }
+            .user_page__inner__show-profile__wrapper__right-box__status__following{
+            }
+          }
+        }
+      }
+    }
+  }
+  .user_post-main__inner{
+    margin-top:20px;
+    .post-main__inner__container{
+      .post-main__inner__container__list{
+        .switch_usermenu{
+          margin-bottom:10px;
+          font-family: 'Catamaran', sans-serif;
+        }
+        .user_postslist{
+          font-size:20px;
+          font-family: 'Catamaran', sans-serif;
+
+        }
+      }
+    }
+  }
+
+
+
+}
+@media only screen and (min-width: 768px) {
+
+}

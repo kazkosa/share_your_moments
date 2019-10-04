@@ -194,6 +194,12 @@ Associtation
 - belongs_to :user
 - belongs_to :post
 
+### relationships table
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|foreign_key: true, on_delete: :cascade|
+|user_id|references|foreign_key: {to_table: users}, on_delete: :cascade|
+
 
 ## Licence
 Copyright (c) 2019 Kazuyuki Kosaka  

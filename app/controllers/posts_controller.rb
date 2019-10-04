@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+
   def index
     @posts = Post.order("created_at DESC").page(params[:page]).per(18)
   end
@@ -24,7 +26,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     @likes = @post.likes
     @like  = @likes.find_by(user_id: current_user.id)
     @favorites = @post.favorites
@@ -34,13 +35,10 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
     @post.image.cache!
   end
 
   def update
-    @post = Post.find(params[:id])
-
     if user_signed_in? && @post.user_id == current_user.id
       @post.update(post_params)
       tag_list = @post.content.scan(%r|\s?(#[^\s[　,<>]]+)\s?|).flatten
@@ -52,7 +50,6 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    @post = Post.find(params[:id])
     tag_list = @post.content.scan(%r|\s?(#[^\s[　,<>]]+)\s?|).flatten
     if @post.user_id == current_user.id
       @post.destroy 
@@ -88,7 +85,12 @@ class PostsController < ApplicationController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:title,:content,:image,:image_cache, :image_option, :location).merge(user_id: current_user.id)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end
