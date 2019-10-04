@@ -1,0 +1,16 @@
+= render "devise/shared/nav"
+.post-main
+  .post-main__inner
+    .post-main__inner__container
+      .post-main__inner__container__list
+        .sarch_result
+          -if @posts.count
+            %h5.search_keyword=@search_keyword
+            %p.search_count
+              #{@posts.count} posts
+          - else
+            %h5.search_keyword=@search_keyword
+        %ul.post-main__inner__container__list__wrapper
+          - @posts_page.each do | post_page |
+            =render partial: "post", locals:{ post: post_page }
+        = paginate(@posts_page)

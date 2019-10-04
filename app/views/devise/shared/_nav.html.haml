@@ -9,6 +9,15 @@
       - if user_signed_in?
         #navbarSupportedContent.collapse.navbar-collapse
           %ul.navbar-nav.ml-md-auto
+            %li.nav-item.searchbox
+              = form_with url:search_posts_path ,method:"get", local:true, class:"searchform" do |f|
+                = f.text_field :keyword, placeholder: "Search", class: "search-box-input"
+                = fa_icon "search",class:"search-icon fa-2x;"
+                = f.submit "Search", class:"btn btn-outline-success my-2 my-sm-0", style:"display:none;"
+                .searchbox__resultbox
+                  %ul.searchbox__resultbox__inner
+                    %li.searchbox__resultbox__inner__item
+                      sample
             %li.nav-item.dropdown.active
               = link_to "", {class:"nav-link mr-5", id:"navbar", aria:{expanded: false}, aria:{haspopup: true},data: {toggle: "dropdown"}, role: "button" } do
                 =fa_icon "plus-square-o" ,class: "menu-bar-icon fa-2x"
