@@ -18,7 +18,7 @@ body{
   width:100%;
   &__new_inner{
     margin:90px auto 0 auto;
-    padding:10px 15px;
+    padding:10px 15px 5px 15px;
     max-width:935px;
     min-height:calc(100vh - 110px);
     background:white;
@@ -34,7 +34,7 @@ body{
       }
       .select_step{
         border-top:1px solid lightgrey;
-        margin-top:5px;
+        margin-top:1px;
         padding-top:5px;
         padding-bottom:0;
         display:flex;
@@ -118,6 +118,15 @@ body{
                 font-weight:bold;
                 margin-left:10px;
                 line-height:45px;
+                text-decoration:none;
+                color:black;
+              }
+              .user_name_box:hover{
+                color:navy;
+              }
+              .user_follow_box{
+                margin:0 5px 0 auto;
+                
               }
             }
           }
@@ -238,7 +247,7 @@ body{
 
               #comment_post{
                 margin:0;
-                padding:0.2em;
+                padding:5px;
                 font-size:14px;
               }
             }
