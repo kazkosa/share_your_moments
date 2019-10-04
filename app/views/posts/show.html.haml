@@ -15,8 +15,14 @@
                 .avatar_box
                   .avatar_box_inner
                     = image_tag @post.user.avatar ,class:"avatar_image" 
-              .user_name_box
+              - else
+                .avatar_box
+                  .avatar_box_inner__non-avatar
+                    =fa_icon "user-circle",class:"fa-2x non-avatar"
+              = link_to user_path(@post.user), class:"user_name_box" do
                 = @post.user.name
+              .user_follow_box
+                = render partial:"relationships/follow_button", locals: { user: @post.user}
           / article and comment info
           .article_and_comment_box
             .article_box
