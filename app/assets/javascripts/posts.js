@@ -172,10 +172,17 @@ $(function(){
     $(".commnet-notyet" ).show();
   }
   if($(".article_box__content").length){
-    var show_content= $(".article_box__content").html().replace(/[#＃][Ａ-Ｚａ-ｚA-Za-z一-鿆0-9０-９ぁ-ヶｦ-ﾟー._-\u3005-\u3006]+/gm,'<span style="color:darkblue;">$&</span>');
+    var show_content= $(".article_box__content").html().replace(/[#＃][Ａ-Ｚａ-ｚA-Za-z一-鿆0-9０-９ぁ-ヶｦ-ﾟー._-\u3005-\u3006]+/gm,
+      // '<span data-keyword=$& class="hashlink" style="color:darkblue;">$&</span>'
+    '<span>\
+        <form class="searchform" action="/posts/search" accept-charset="UTF-8" method="get" style="display:inline;">\
+        <input name="keyword" type="hidden" value = $& >\
+        <input type="submit" name="commit" value=$& style="color:darkblue; background:white; border:none;marign:0;padding:0;" >\
+      </form>\
+    </span>'
+    );
     $(".article_box__content").html(show_content);
   }
-
 
   // Display Search result function 
   function appendMsgToHTML(text){

@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @followers = @user.followers
     @followings = @user.followings
     following_ids = @followings.map{ |following| following.posts.map{|post| post.id}   }.flatten.sort {|a, b| b <=> a }
-    @Post_followings = following_ids.map{|id| Post.find(id)}.slice(0,5)
+    @Post_followings = following_ids.map{|id| Post.find(id)}.slice(0,1) #Select the he latest posts
   end
 
   private

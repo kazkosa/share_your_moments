@@ -112,8 +112,7 @@ body{
               display:flex;
               @include avatar_call();
               border-bottom:1px solid grey;
-              padding:0 0 5px 5px;
-
+              padding:10px 0 10px 5px;
               .user_name_box{
                 font-weight:bold;
                 margin-left:10px;
@@ -125,8 +124,12 @@ body{
                 color:navy;
               }
               .user_follow_box{
-                margin:0 5px 0 auto;
-                
+                margin:0 5px 0 auto; 
+              }
+            }
+            @media only screen and (min-width:768px){
+              .user_box_wrapper{
+                padding:0 0 5px 5px;
               }
             }
           }
@@ -146,7 +149,6 @@ body{
                 font-size:14px;
                 white-space: pre-line;
                 
-                // max-height:5em;
               }
 
               &__timestamp{
@@ -155,9 +157,12 @@ body{
 
               &__location{
                 font-size:12px;
-
-                span:hover{
+                span{
                   cursor:pointer;
+                  color:darkcyan;
+
+                }
+                span:hover{
                   border-bottom:0.5px solid darkgrey;
                   background:lightskyblue;
                   border-radius:4px;
