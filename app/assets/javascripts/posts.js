@@ -173,7 +173,6 @@ $(function(){
   }
   if($(".article_box__content").length){
     var show_content= $(".article_box__content").html().replace(/[#＃][Ａ-Ｚａ-ｚA-Za-z一-鿆0-9０-９ぁ-ヶｦ-ﾟー._-\u3005-\u3006]+/gm,
-      // '<span data-keyword=$& class="hashlink" style="color:darkblue;">$&</span>'
     '<span>\
         <form class="searchform" action="/posts/search" accept-charset="UTF-8" method="get" style="display:inline;">\
         <input name="keyword" type="hidden" value = $& >\
