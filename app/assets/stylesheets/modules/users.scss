@@ -127,28 +127,45 @@
 
             .user_page__inner__show-profile__wrapper__right-box__profile__edit_box{
               margin:0 0 0 30px;
-              
-              .edit-btn{
-              }
+                .edit-btn{
+                  font-size:12px;
+                }
             }
-
             .user_page__inner__show-profile__wrapper__right-box__profile__follow_box{
               margin:0 0 0 30px;
+            }
+            @media only screen and (min-width: 768px) {
+              .user_page__inner__show-profile__wrapper__right-box__profile__edit_box{
+                .edit-btn{
+                  font-size:16px;
+                }
+              }
             }
           }
 
           .user_page__inner__show-profile__wrapper__right-box__status{
             display:flex;
-            justify-content:space-around;
+            // justify-content:space-around;
+            flex-flow:column;
             height:30px;
             line-height:30px;
             font-family: 'Catamaran', sans-serif;
-            
+            margin:10px 0 0 0;
+            padding:0;
             .user_page__inner__show-profile__wrapper__right-box__status__articles{
             }
             .user_page__inner__show-profile__wrapper__right-box__status__followers{
             }
             .user_page__inner__show-profile__wrapper__right-box__status__following{
+            }
+          }
+          @media only screen and (min-width: 768px) {
+            .user_page__inner__show-profile__wrapper__right-box__status{
+              display:flex;
+              flex-flow:row;
+              justify-content:space-around;
+              margin:0;
+              padding:0;
             }
           }
         }
