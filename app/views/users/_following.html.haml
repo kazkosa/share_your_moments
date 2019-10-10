@@ -1,0 +1,17 @@
+.user_box
+  .user_box_wrapper
+    - if following.avatar.attached?
+      .avatar_box
+        .avatar_box_inner
+          = image_tag following.avatar ,class:"avatar_image" 
+    - else
+      .avatar_box
+        .avatar_box_inner__non-avatar
+          =fa_icon "user-circle",class:"fa-2x non-avatar"
+    = link_to user_path(following), class:"user_name_box" do
+      = following.name
+    .user_follow_box
+      = render partial:"relationships/follow_button", locals: { user: following}
+%ul.post-main__inner__container__list__wrapper
+  - following.posts.order("id DESC").limit(4).each do | post |
+    =render partial: "posts/post", locals:{ post: post}

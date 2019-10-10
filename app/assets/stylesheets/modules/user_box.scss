@@ -1,0 +1,26 @@
+@mixin user_box_call(){
+  .user_box{
+    padding-top:5px;
+    .user_box_wrapper{
+      display:flex;
+      @include avatar_call();
+      border-bottom:1px solid grey;
+      padding:0 0 5px 5px;
+
+      .user_name_box{
+        font-weight:bold;
+        margin-left:10px;
+        line-height:45px;
+        text-decoration:none;
+        color:black;
+      }
+      .user_name_box:hover{
+        color:navy;
+      }
+      .user_follow_box{
+        margin:0 5px 0 auto;
+        
+      }
+    }
+  }
+}

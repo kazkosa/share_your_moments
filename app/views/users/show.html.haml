@@ -29,21 +29,34 @@
             .user_page__inner__show-profile__wrapper__right-box__status__following
               #{@user.followings.count} following
   .user_post-main__inner
-    .post-main__inner__container
-      .post-main__inner__container__list
+    .user_post-main__inner__container
+      .user_post-main__inner__container__list
         .btn-group{class:"switch_usermenu", role:"group" ,aria:{label: "Basic example"}}
           - if @user == current_user
-            =button_tag "", class: "btn btn-secondary"  do
+            =button_tag "", class: "btn btn-secondary user-posts-btn"  do
               Posts
-            =button_tag "", class: "btn btn-outline-secondary"  do
+            =button_tag "", class: "btn btn-outline-secondary user-favorites-btn"  do
               Favorite
-            =button_tag "", class: "btn btn-outline-secondary"  do
+            =button_tag "", class: "btn btn-outline-secondary user-followers-btn"  do
               Follower
-            =button_tag "", class: "btn btn-outline-secondary"  do
+            =button_tag "", class: "btn btn-outline-secondary user-followings-btn"  do
               Following
           - else
             %p.user_postslist
               Posts
-        %ul.post-main__inner__container__list__wrapper
-          - @user.posts.each do | post |
-            =render partial: "posts/post", locals:{ post: post}
+        .user-post-main__inner__container__list__posts 
+          %ul.post-main__inner__container__list__wrapper
+            - @user.posts.each do | post |
+              =render partial: "posts/post", locals:{ post: post}
+        - if @user == current_user
+          .user-post-main__inner__container__list__favorites
+            %ul.post-main__inner__container__list__wrapper
+              - @Post_favorites .each do | post |
+                =render partial: "posts/post", locals:{ post: post}
+          .user-post-main__inner__container__list__followers
+            .user-post-main__inner__container__list__followers__member_box
+              = render partial: 'follower', collection: @followers
+          .user-post-main__inner__container__list__followings
+            .user-post-main__inner__container__list__followings__member_box
+              = render partial: 'following', collection: @followings
+              
