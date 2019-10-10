@@ -1,0 +1,14 @@
+.user_box
+  .user_box_wrapper
+    - if follower.avatar.attached?
+      .avatar_box
+        .avatar_box_inner
+          = image_tag follower.avatar ,class:"avatar_image" 
+    - else
+      .avatar_box
+        .avatar_box_inner__non-avatar
+          =fa_icon "user-circle",class:"fa-2x non-avatar"
+    = link_to user_path(follower), class:"user_name_box" do
+      = follower.name
+    .user_follow_box
+      = render partial:"relationships/follow_button", locals: { user: follower}

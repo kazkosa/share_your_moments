@@ -157,8 +157,10 @@
   }
   .user_post-main__inner{
     margin-top:20px;
-    .post-main__inner__container{
-      .post-main__inner__container__list{
+    text-align:center;
+    .user_post-main__inner__container{
+
+      .user_post-main__inner__container__list{
         .switch_usermenu{
           margin-bottom:10px;
           font-family: 'Catamaran', sans-serif;
@@ -167,6 +169,35 @@
           font-size:20px;
           font-family: 'Catamaran', sans-serif;
 
+        }
+        .user-post-main__inner__container__list__posts{
+          display:block;
+        }
+
+        .user-post-main__inner__container__list__favorites{
+          display:none;
+        }
+
+        .user-post-main__inner__container__list__followers{
+          display:none;
+          &__member_box{
+            @include user_box_call();
+            margin:40px auto;
+            max-width:400px;
+          }
+        }
+
+        .user-post-main__inner__container__list__followings{
+          display:none;
+          &__member_box{
+            @include user_box_call();
+            margin:40px auto;
+            max-width:400px;
+            .post-main__inner__container__list__wrapper__article-box{
+              margin-bottom:20px;
+            }
+          }
+        
         }
       }
     }
