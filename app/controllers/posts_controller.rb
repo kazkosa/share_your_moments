@@ -11,6 +11,7 @@ class PostsController < ApplicationController
       @post.image.retrieve_from_cache! params[:post][:image_cache]
     else
       @post = Post.new
+      @post.post_images.build
     end
   end
 

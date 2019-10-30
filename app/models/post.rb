@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   has_many :favorites,:dependent  => :delete_all
   has_many :post_tags ,:dependent => :delete_all
   has_many :tags, through: :post_tags
+  has_many :post_images, :dependent => :delete_all
   validates :title, presence: true
   validates :content, presence: true
   validates :image, presence: true
