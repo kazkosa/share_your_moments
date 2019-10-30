@@ -79,3 +79,6 @@ group :development, :test do
   gem 'capybara', '>= 2.15'
 end
 gem 'dotenv-rails'
+group :production do
+  gem 'unicorn', '5.4.1'
+end
