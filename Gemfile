@@ -90,4 +90,5 @@ group :development, :test do
   gem 'capistrano3-unicorn'
 end
 gem 'fog-aws'
+gem 'aws-sdk-s3', require: false
 
