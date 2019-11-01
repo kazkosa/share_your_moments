@@ -4,6 +4,16 @@
   .userform_inner
     %p.project-title Share Your Moments
     %h5.page-target Edit Account
+    .user_box.for_edit
+      .field
+        - if current_user.avatar.attached?
+          .avatar_box
+            .avatar_box_inner
+              = image_tag current_user.avatar ,class:"avatar_image" 
+        - else
+          .avatar_box
+            .avatar_box_inner__non-avatar
+              =fa_icon "user-circle",class:"fa-2x non-avatar"
     = form_for(current_user) do |f|
       .field
         = f.label :name
