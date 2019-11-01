@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'posts#index'
   resources :users,   only: [:edit, :update, :show] do
     get 'edit_avatar'
+    post 'update_avatar'   
   end
   resources :relationships, only: [:create, :destroy]
   resources :posts,   only: [:index, :new, :create, :edit, :update, :destroy, :show] do

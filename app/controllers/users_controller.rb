@@ -4,11 +4,17 @@ class UsersController < ApplicationController
   def edit
   end
   def edit_avatar
+    current_user.avatar.purge
   end
-  
+
   def update
+    path = Rails.application.routes.recognize_path(request.referer)
     if current_user.update(user_params)
-      redirect_to user_path(current_user)
+      if path[:action] == "edit_avatar"
+        redirect_to edit_user_path(current_user)
+      else
+        redirect_to user_path(current_user)
+      end
     else
       render :edit
     end
