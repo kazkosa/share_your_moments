@@ -2,15 +2,25 @@
   width:100%;
   background:white;
   .navbar_inner{
+    width:100%;
     padding:0 10px;
     display:flex;
     justify-content: space-between;
-    width:100%;
+    flex-wrap:wrap;
+    box-sizing: border-box;
+
     .navbar-brand{
+      max-width:312px;
+      // height:auto;
+      flex:1 1 auto;
+      img{
+        width:100%;
+      }
     }
     .header_menu_box{
       padding-top:6px;
       line-height:100%;
+      flex:0 0 56px;
       #navbarSupportedContent{
         .navbar-nav{
           .searchform{

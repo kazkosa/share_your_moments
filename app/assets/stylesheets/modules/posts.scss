@@ -11,6 +11,12 @@ body{
 .spacing{
   height:100px;
 }
+@media only screen and (max-width:420px){
+  .post-main{
+    margin:120px 0 0 0 !important;
+  }
+}
+
 .post-main{
   background:#fafafa;
   margin:0;
@@ -292,14 +298,22 @@ body{
             }
           }
         }
+        @media only screen and (min-width: 768px) {
+          .image_box_for_edit{
+            max-height:480px;
+            width:480px;
+          }
+        }
         .image_box_for_edit{
-          max-height:480px;
-          width:480px;
-
+          height:480px;
+          max-width:480px;
+          box-sizing: border-box;
           @media only screen and (min-width: 768px) {
-            flex:1 1 auto;
-            height:480px;
-            width:600px;
+            .image_box_inner{
+              flex:1 1 auto;
+              height:480px;
+              width:600px;
+            }
           }
           .image_box_inner{
             height:100%;
@@ -401,7 +415,7 @@ body{
           }
         
           &__article-box{
-            width:48%;
+            width:45%;
             position:relative;
             display:block;
             margin:4px;
