@@ -95,6 +95,16 @@ $(function(){
       alert("You havn't select an image file yet.Select one!");
     }
   });
+  //Step2, Back from Step3 at edit mode
+  $(".back_step2-edit").on("click",function(e){
+    e.preventDefault();
+    var input = document.querySelector(".new-image");
+    $(".step1").css("display","none");
+    $(".step2").css("display","block");
+    $(".step3").css("display","none");
+    $(".confirm").css("display","none");
+    $(".step2.select_step").css("display","flex");
+  });
   //Step3, Next to Step2 or Back from Confirm
   $(".to_step3").on("click",function(e){
     e.preventDefault();

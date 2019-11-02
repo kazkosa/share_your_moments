@@ -46,7 +46,7 @@
               Posts
         .user-post-main__inner__container__list__posts 
           %ul.post-main__inner__container__list__wrapper
-            - @user.posts.each do | post |
+            - @user.posts.order("created_at DESC").each do | post |
               =render partial: "posts/post", locals:{ post: post}
         - if @user == current_user
           .user-post-main__inner__container__list__favorites
