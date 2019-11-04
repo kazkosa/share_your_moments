@@ -39,11 +39,11 @@
               .field.newpost_title
                 = f.label :title
                 %br/
-                = f.text_field :title, autofocus: true, placeholder: "Title", required: true, class: "post_title"
+                = f.text_field :title, autofocus: true, placeholder: "Title", required: true, class: "post_title",id:"new_title"
               .field.newpost.content
                 = f.label :content
                 %br/
-                = f.text_area :content, autofocus: true, placeholder: "Attach a message to the image!",  class: "post_content",size: "32x3"
+                = f.text_area :content, autofocus: true, placeholder: "Attach a message to the image!",  class: "post_content",size: "32x3",id:"new_content"
               .field.newpost.snaparea
                 = f.label :location
                 %br/
