@@ -72,6 +72,9 @@ rake db:seed
 * Detail page of each article
 * Editable / Deletable article submission
 * Comments on the article by Ajax
+* Favorites on the article
+* Likes on the article
+* Article search function
 * User authentication with Devise
 * Dismissable flash notifications
 * Uploading Image files with carrierWave/mini_magic 
@@ -85,25 +88,25 @@ Test runs by executing the following command
 - Model Test
 
 ```bash
-bundle exec rspec spec/models/user_spec.rb
+bundle exec rspec spec/models/*
 ```
 
 - Controller Test
 
 ```bash
-bundle exec rspec spec/controllers/users_controller_spec.rb
+bundle exec rspec spec/controllers/*
 ```
 
 - System Test
 
 ```bash
-bundle exec rspec spec/features/user_spec.rb
+bundle exec rspec spec/features/*
 ```
 
 - All Test at once
 
 ```bash
-bundle exec rspec spec/features/user_spec.rb
+bundle exec rspec
 ```
 
 
