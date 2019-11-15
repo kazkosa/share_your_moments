@@ -6,7 +6,19 @@
         / Show an image
         .image_box_for_edit
           .image_box_inner
-            = image_tag @post.image.url ,id:"current_image_for_edit", class: "filter-#{@post.image_option}"
+            - if @post.image.present?
+              = image_tag @post.image.url ,id:"current_image_for_edit", class: "filter-#{@post.image_option}", data:{imgid:"0"}
+            - elsif @post.post_images.present?
+              - @post.post_images.each_with_index do |post_image,i|
+                = image_tag post_image.image.url ,id:"current_image_for_edit", class: "filter-#{@post.image_option}", data:{imgid:"#{i}",imgtotal:"#{@post.post_images.count}"}
+              - if @post.post_images.count >= 2
+                .right-arrow
+                  >
+                .left-arrow
+                  <
+                %ul.ball-boxes
+                  - @post.post_images.each do |image|
+                    %li.ball-box
         .input_post_wrapper
           / auther info
           .user_box
@@ -92,7 +104,7 @@
           .comment_form
             = form_for [@post,@comment] , html: {class: "new__message"} do |f|
               .field.entercomment
-                = f.text_area :text, autofocus: true, placeholder: "Message", required: true, class: "message__content"
+                = f.text_area :text,  placeholder: "Message", required: true, class: "message__content"
               .actions.commentbtn
                 = f.submit "Send", class:"btn btn-secondary", id:"comment_post"
       

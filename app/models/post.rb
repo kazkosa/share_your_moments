@@ -8,8 +8,8 @@ class Post < ApplicationRecord
   has_many :post_images, :dependent => :delete_all
   validates :title, presence: true
   validates :content, presence: true
-  validates :image, presence: true
   mount_uploader :image, ImageUploader
+  accepts_nested_attributes_for :post_images
 
   def save_tags(tag_list)
     current_tag_list = self.tags.pluck(:name) unless self.tags.nil?
