@@ -132,6 +132,12 @@ $(function(){
   $(document).on("click",".left-arrow", function(e){
     state_trans(-1);
   });
+  $(document).on("touchend",".right-arrow", function(e){
+    state_trans(1);
+  });
+  $(document).on("touchend",".left-arrow", function(e){
+    state_trans(-1);
+  });
 
   // images state management
   function state_trans(step){
