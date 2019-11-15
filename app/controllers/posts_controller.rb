@@ -18,12 +18,19 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params) 
     tag_list = @post.content.scan(%r|\s?(#[^\s[　,<br>]]+)\s?|).flatten
-    if @post.save
+    if params[:post_image].present? && @post.save
       @post.save_tags(tag_list)
+      if params[:post_image].present? 
+        post_image_params[:images].each do |image|
+          @post.post_images.build
+          post_image = @post.post_images.new(image: image)
+          post_image.save
+        end
+      end
       redirect_to root_path, notce: 'New airticle has been postted'
     else
       flash.now[:alert] = 'New airticle cannot be postted.'; render :index
-    end    
+    end
   end
 
   def show
@@ -90,7 +97,9 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title,:content,:image,:image_cache, :image_option, :location).merge(user_id: current_user.id)
   end
-
+  def post_image_params
+    params.require(:post_image).permit(images:[])
+  end
   def set_post
     @post = Post.find(params[:id])
   end

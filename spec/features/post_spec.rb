@@ -17,7 +17,7 @@ feature 'post', type: :feature do
     #new
     visit new_post_path
     find('input[type="file"]').click
-    attach_file "post[image]", "public/Logo2.png"
+    attach_file "post_image[images][]", "public/Logo2.png"
     find('.step1 .to_step2',visible: true).click
     find('.step2 .to_step3',visible: true).click
     fill_in 'new_title',    with: "test_title2"

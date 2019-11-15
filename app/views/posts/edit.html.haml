@@ -18,6 +18,17 @@
             .image_box_inner
               - if @post.image.url
                 = image_tag @post.image.url ,id:"current_image_for_edit"
+              - elsif @post.post_images.present?
+                - @post.post_images.each_with_index do |post_image,i|
+                  = image_tag post_image.image.url ,id:"current_image_for_edit", class: "filter-#{@post.image_option}", data:{imgid:"#{i}",imgtotal:"#{@post.post_images.count}"}
+                - if @post.post_images.count >= 2
+                  .right-arrow
+                    >
+                  .left-arrow
+                    <
+                  %ul.ball-boxes
+                    - @post.post_images.each do |image|
+                      %li.ball-box
               - else
                 .dummy_post_box
                   No image

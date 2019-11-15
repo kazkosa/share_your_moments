@@ -6,12 +6,12 @@ describe Post do
       post = build(:post,user_id: user.id)
       expect(post).to be_valid
     end
-    it 'is invalid without a image' do
-      user = create(:user)
-      post = build(:post,image:"",user_id: user.id)
-      post.valid?
-      expect(post.errors[:image]).to include("can't be blank")
-    end
+    # it 'is invalid without a image' do
+    #   user = create(:user)
+    #   post = build(:post,image:"",user_id: user.id)
+    #   post.valid?
+    #   expect(post.errors[:image]).to include("can't be blank")
+    # end
     it 'is invalid without a content' do
       user = create(:user)
       post = build(:post,content:"",user_id: user.id)

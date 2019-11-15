@@ -1,7 +1,10 @@
 %li.post-main__inner__container__list__wrapper__article-box
   = link_to post_path(post), class: "post-main__inner__container__list__wrapper__article-box__link" do
     .post-main__inner__container__list__wrapper__article-box__link__inbox
-      = image_tag post.image.thumb.url, class: "post-main__inner__container__list__wrapper__article-box__link__inbox__img filter-#{post.image_option}"
+      - if post.image.thumb.present?
+        = image_tag post.image.thumb.url, class: "post-main__inner__container__list__wrapper__article-box__link__inbox__img filter-#{post.image_option}"
+      - if post.post_images.present?
+        = image_tag post.post_images.first.image.thumb.url, class: "post-main__inner__container__list__wrapper__article-box__link__inbox__img filter-#{post.image_option}"
       .mask
         .caption
           - if post.likes.find_by(user_id:current_user.id)
@@ -18,3 +21,8 @@
           &nbsp
           - if post.favorites.find_by(user_id:current_user.id)
             =fa_icon "star",class:"icon-favo fa-lg"
+        
+          - if post.post_images.present? && post.post_images.count >= 2
+            =fa_icon "square",class:"icon-square fa-lg"
+            =fa_icon "square-o",class:"icon-square fa-lg"
+          

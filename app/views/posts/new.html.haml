@@ -18,17 +18,25 @@
             .image_box_inner
               - if @post.image.url
                 = image_tag @post.image.url ,id:"current_image_for_edit"
+              - elsif @post.post_images.first.image.present?
+                - @post.post_images.each do |post_image|
+                  = image_tag post_image.image.url ,id:"current_image_for_edit", class: "filter-#{@post.image_option}"
               - else
                 .dummy_post_box
+                  -# .dummy_post_box_content
                   No image
           .input_post_wrapper
             / Display the image selected by user 
             .input_box.step1
-              = f.label "Select an image file"
-              %br/
-              = f.file_field :image, class: "new-image", required: true
-              = f.hidden_field :image_cache
-              %br/
+              -# = f.label "Select an image file"
+              -# = f.file_field :image, class: "new-image"
+              -# = f.hidden_field :image_cache
+              = f.fields_for :post_images do |ff|
+                = ff.label :image, "Select an image files (Max number:5)"
+                %br/
+                = ff.file_field :image, multiple: true, class: "new-image multiple",required: true, name: "post_image[images][]"
+                = ff.hidden_field :image_cache
+                %br/
             / Select an effect to image
             .input_box.step2
               = f.label "Image retouch"
@@ -72,4 +80,3 @@
             Back
           .actions
             = f.submit "Post", class:"btn_map submit btn btn-outline-primary"
-        
