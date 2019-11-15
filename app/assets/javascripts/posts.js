@@ -126,10 +126,10 @@ $(function(){
   if (total_image >= 2){
     state_trans(0);
   }
-  $(document).on("click",".right-arrow", function(e){
+  $(".image_box_inner").on("click",".right-arrow", function(e){
     state_trans(1);
   });
-  $(document).on("click",".left-arrow", function(e){
+  $(".image_box_inner").on("click",".left-arrow", function(e){
     state_trans(-1);
   });
 
