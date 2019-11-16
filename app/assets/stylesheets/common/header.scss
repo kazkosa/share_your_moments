@@ -6,15 +6,21 @@
     padding:0 10px;
     display:flex;
     justify-content: space-between;
-    flex-wrap:wrap;
+    // flex-wrap:wrap;
     box-sizing: border-box;
+    position:relative;
 
     .navbar-brand{
-      max-width:312px;
-      // height:auto;
       flex:1 1 auto;
+      @media only screen and (min-width: 480px) {
+        max-width:312px;
+      }
       img{
         width:100%;
+        height:auto;
+        @media only screen and (min-width: 768px) {
+          width:100%;
+        }
       }
     }
     .header_menu_box{
@@ -22,6 +28,22 @@
       line-height:100%;
       flex:0 0 56px;
       #navbarSupportedContent{
+        position:absolute;
+        left:0px;
+        background:white;
+        padding:10px 20px;
+        width:100%;
+        border-bottom:1px solid lightgray;
+
+        @media only screen and (min-width: 768px) {
+          position: static;
+          // left:0px;
+          // background:white;
+          padding:0px;
+          width:100%;
+          border-bottom:none;
+        }
+
         .navbar-nav{
           .searchform{
             height:100%;

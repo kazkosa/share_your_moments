@@ -74,9 +74,11 @@
   .user_page__inner{
 
     .user_page__inner__show-profile{
-      padding:45px 40px 40px 40px;
+      padding:10px;
       border-bottom:1px solid lightgrey;
-
+      @media only screen and (min-width: 768px) {
+        padding:45px 40px 40px 40px;
+      }
       .user_page__inner__show-profile__wrapper{
         display:flex;
 
@@ -86,11 +88,15 @@
           padding:0;
           
           .user_page__inner__show-profile__wrapper__avatar-box__inner{
-            height:140px;
-            width:140px;
+            height:60px;
+            width:60px;
             position:relative;
             overflow:hidden;
             border-radius:50%; 
+            @media only screen and (min-width: 768px) {
+              height:140px;
+              width:140px;  
+            }
 
             .avatar_image{
               position: absolute;
@@ -105,13 +111,32 @@
           }
         }
         .avatar_box{
+          width:40px;
+          height:40px;
           .avatar_box_inner__non-avatar{
-
+            .non-avatar{
+              font-size:40px;
+            }
+          }
+        }
+        @media only screen and (min-width: 768px) {
+          .avatar_box{
+            width:40px;
+            height:40px;
+            .avatar_box_inner__non-avatar{
+              .non-avatar{
+                font-size:60px;
+              }
+            }
           }
         }
         .user_page__inner__show-profile__wrapper__right-box{
-          padding:0 0 0 40px;
-          width:60%;
+          padding:0 0 0 10px;
+          width:80%;
+          @media only screen and (min-width: 768px) {
+            padding:0 0 0 40px;
+            width:60%;
+          }
 
           .user_page__inner__show-profile__wrapper__right-box__profile{
             width:100%;
@@ -146,7 +171,8 @@
 
           .user_page__inner__show-profile__wrapper__right-box__status{
             display:flex;
-            flex-flow:column;
+            flex-flow:row;
+            justify-content:space-around;
             height:30px;
             line-height:30px;
             font-family: 'Catamaran', sans-serif;
