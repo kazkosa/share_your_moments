@@ -69,14 +69,24 @@ $(function(){
   $(".new-image.multiple").on("change",function(e){
     e.preventDefault();
     $(".image_box_inner").empty();
+    
+    
     files = $(this)[0].files;
     if (files.length == 0){
       var html =`
-        <div class="dummy_post_box">
-          No image
-        </div>
+        <li class="image_box_inner_image">
+          <div class="dummy_post_box">
+            No image
+          </div>
+        </li>
       `;
       $(html).appendTo($(".image_box_inner")).trigger("create");
+      total_image = files.length;
+      state_photo = 0
+      $(".right-arrow").remove();
+      $(".left-arrow").remove();
+      $(".ball-boxes").remove();
+      
     }
     else if( files.length  <= total_image_max){
       for (var i=0; i<files.length; i++) {
@@ -85,7 +95,11 @@ $(function(){
         (function(i){
           fileReader.onload = function( event ) {
             var loadedImageUri = event.target.result;
-            var html =`<img id="current_image_for_edit" data-imgid=${i}  src="${loadedImageUri}"  ></img>`;
+            var html =`
+              <li class="image_box_inner_image" data-imgid=${i} data-imgtotal=${files.length}>
+                <img id="current_image_for_edit" class="filter-normal" src="${loadedImageUri}">
+              </li>
+              `;
             $(html).appendTo($(".image_box_inner")).trigger("create");
           };
           fileReader.readAsDataURL(files[i]);
@@ -93,6 +107,8 @@ $(function(){
       }
       total_image = files.length;
       state_photo = 0
+      leftMax = 0;
+      $(".image_box_inner").css("left",-unit_img_latest*state_photo);
       if( total_image >= 2){
         var html_r=`
           <div class="right-arrow">></div>
@@ -109,10 +125,11 @@ $(function(){
             ${html_b_children}
           </ul>
         `;
-        $('.image_box_inner').append(html_r);
-        $('.image_box_inner').append(html_l);
-        $('.image_box_inner').append(html_b).trigger("create");
+        $('.image_box_for_edit').append(html_r);
+        $('.image_box_for_edit').append(html_l);
+        $('.image_box_for_edit').append(html_b).trigger("create");
         state_trans(0);
+        leftMax = - unit_img_latest * ( total_image -1 );
       }
     }
     else{
@@ -120,16 +137,80 @@ $(function(){
     }
   });
   var state_photo = 0;
-  var total_image = $("#current_image_for_edit").data("imgtotal") !=undefined ? $("#current_image_for_edit").data("imgtotal") : 0;
+  var total_image = $(".image_box_inner_image").data("imgtotal") !=undefined ? $(".image_box_inner_image").data("imgtotal") : 0;
+  
+  var w = $(window).width();
+  var disp_th = 768;
+  var unit_img_pc = 480;
+  var unit_img_iphone = 240;
+  var unit_img_latest = ( w > disp_th? unit_img_pc:unit_img_iphone);
+  
   
   // Initial setting in case of multiple images for show and edit action
   if (total_image >= 2){
     state_trans(0);
+    var leftMax = - unit_img_latest * ( total_image -1 );
   }
-  $(".image_box_inner").on("click",".right-arrow", function(e){
+
+  var $setMain = $(".image_box_frame");
+  var $setMainUl = $setMain.children('ul');
+
+  var isTouch = ('ontouchstart' in window);
+  var scrollSpeed  = 250;
+  $setMainUl.bind(
+    {
+      'touchstart mousedown': function(e){
+        var $setMainUlNot = $setMain.children('ul:not(:animated)');
+        $setMainUlNot.each(function(){
+          e.preventDefault();
+          this.pageX = (isTouch ? event.changedTouches[0].pageX : e.pageX);
+          this.leftBegin = parseInt($(this).css('left'));
+          this.left = parseInt($(this).css('left'));
+          this.touched = true;
+        });
+      },'touchmove mousemove': function(e){
+        if(!this.touched){
+          return;
+        }
+      
+        e.preventDefault();
+
+        this.left = this.left - (this.pageX - (isTouch ? event.changedTouches[0].pageX : e.pageX) );
+        this.pageX = (isTouch ? event.changedTouches[0].pageX : e.pageX);
+        if(this.left < 0 && this.left > leftMax){
+          $(this).css({left:this.left});
+        } else if(this.left >= 0) {
+          $(this).css({left:'0'});
+        } else if(this.left <= leftMax) {
+          $(this).css({left:(leftMax)});
+        }
+      },'touchend mouseup mouseout': function(e){
+        if (!this.touched) {
+          return;
+        }
+        this.touched = false;
+
+        if(this.leftBegin > this.left && (!((this.leftBegin) === (leftMax)))){
+          $(this).stop().animate({left:((this.leftBegin)-(unit_img_latest))},scrollSpeed);
+          state_trans(1);
+        } else if(this.leftBegin < this.left && (!((this.leftBegin) === 0))) {
+          $(this).stop().animate({left:((this.leftBegin)+(unit_img_latest))},scrollSpeed);
+          state_trans(-1);
+        } else if(this.leftBegin === 0) {
+          $(this).css({left:'0'});
+        } else if(this.leftBegin <= leftMax) {
+          $(this).css({left:(leftMax)});
+        }
+      }
+    }
+  );
+
+
+  // image slide operation when push next or prev bntton
+  $(".image_box_for_edit").on("click",".right-arrow", function(e){
     state_trans(1);
   });
-  $(".image_box_inner").on("click",".left-arrow", function(e){
+  $(".image_box_for_edit").on("click",".left-arrow", function(e){
     state_trans(-1);
   });
 
@@ -148,10 +229,9 @@ $(function(){
       $(".left-arrow").show();
       $(".right-arrow").show();
     }
-    $("[id=current_image_for_edit]").hide();
-    $("[data-imgid="+state_photo+"]").show();
-    $(".ball-box").css("opacity","0.2");
-    $(".ball-box:nth-of-type("+(state_photo+1) +")").css("opacity","0.6");
+    $(".image_box_inner").stop().animate({left:(-unit_img_latest*state_photo)},scrollSpeed);
+    $(".ball-box").css("opacity","0.4");
+    $(".ball-box:nth-of-type("+(state_photo+1) +")").css("opacity","0.8");
   }
 
   //Step1, Select the image effect
@@ -330,6 +410,7 @@ $(function(){
       }
     });
   }
+  // focus function to comment box
   $(".comment-state").on("click",function(e){
     e.preventDefault();
     $(".message__content").focus();

@@ -15,23 +15,23 @@
         / Select an image
         .field.newpost_image
           .image_box_for_edit
-            .image_box_inner
-              - if @post.image.url
-                = image_tag @post.image.url ,id:"current_image_for_edit"
-              - elsif @post.post_images.present?
-                - @post.post_images.each_with_index do |post_image,i|
-                  = image_tag post_image.image.url ,id:"current_image_for_edit", class: "filter-#{@post.image_option}", data:{imgid:"#{i}",imgtotal:"#{@post.post_images.count}"}
-                - if @post.post_images.count >= 2
-                  .right-arrow
-                    >
-                  .left-arrow
-                    <
-                  %ul.ball-boxes
-                    - @post.post_images.each do |image|
-                      %li.ball-box
-              - else
-                .dummy_post_box
-                  No image
+            .image_box_frame
+              %ul.image_box_inner
+                - if @post.image.present?
+                  %li.image_box_inner_image{data:{imgid:"0"}}
+                    = image_tag @post.image.url ,id:"current_image_for_edit", class: "filter-#{@post.image_option}"
+                - elsif @post.post_images.present?
+                  - @post.post_images.each_with_index do |post_image,i|
+                    %li.image_box_inner_image{data:{imgid:"#{i}",imgtotal:"#{@post.post_images.count}"}}
+                      = image_tag post_image.image.url ,id:"current_image_for_edit", class: "filter-#{@post.image_option}"
+            - if @post.post_images.present? && @post.post_images.count >= 2
+              .right-arrow
+                >
+              .left-arrow
+                <
+              %ul.ball-boxes
+                - @post.post_images.each do |image|
+                  %li.ball-box
           .input_post_wrapper
             / Display the image selected by user 
             .input_box.step1

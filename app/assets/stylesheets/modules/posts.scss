@@ -309,8 +309,8 @@ body{
         }
         @media only screen and (min-width: 768px) {
           .input_post_wrapper{
-            width:350px;
-            flex:0 0 350px;
+            max-width:350px;
+            flex:1 1 auto;
             padding:10px 0 0 10px;
             margin:0;
 
@@ -344,7 +344,7 @@ body{
 
         .image_box_for_edit{
           height:240px;
-          max-width:480px;
+          width:240px;
           box-sizing: border-box;
           position:relative;
 
@@ -391,53 +391,82 @@ body{
             opacity:1;
           }
 
-          .image_box_inner{
-            flex:1 1 auto;
-            height:100%;
-            width:100%;
-            text-align:center;
-            
-            #current_image_for_edit{
-              max-height:100%;
-              max-width:100%;
-              display:none;
-              text-align:center;
-            }
-            #current_image_for_edit[data-imgid="0"]{
-              display:inline-block;
-              text-align:center;
-            }
-            
-            .dummy_post_box{
-              height:100%;
-              width:100%;
-              padding:100px 0;
+
+          .ball-boxes{
+            display:flex;
+            position:absolute;
+            top:240px;
+            left:0;
+            right:0;
+            margin:0 auto;
+            justify-content:center ;
+            .ball-box{
               background:grey;
-              opacity:0.5;
-              text-align:center;
-              color:white;
-              font-size:30px;
-              @media only screen and (min-width: 768px) {
-                padding:210px 0;
-              }
+              opacity:0.4;
+              border-radius:50%;
+              padding:4px;
+              margin:2px;
             }
-            .ball-boxes{
+            @media only screen and (min-width: 768px) {
+              top:480px;
+            }
+          }
+
+          .image_box_frame{
+            width:240px;
+            height:240px;
+            overflow: hidden;
+            cursor: pointer;
+
+            @media only screen and (min-width: 768px) {
+              width:480px;
+              height:480px;
+            }
+            .image_box_inner{
+              text-align:center;
               display:flex;
-              position:absolute;
-              top:240px;
-              left:0;
-              right:0;
-              margin:0 auto;
-              justify-content:center ;
-              .ball-box{
-                background:grey;
-                opacity:0.2;
-                border-radius:50%;
-                padding:4px;
-                margin:2px;
-              }
+              width:1200px;
+              height:240px;
+              position:relative;
+
               @media only screen and (min-width: 768px) {
-                top:480px;
+                width:2400px;
+                height:480px;
+              }
+
+              .image_box_inner_image{
+                width:240px;
+                display:block;
+                box-sizing: border-box;
+
+                @media only screen and (min-width: 768px) {
+                  width:480px;
+                }
+
+                #current_image_for_edit{
+                  max-height:100%;
+                  max-width:100%;
+                  display:inline-block;
+                  text-align:center;
+                }
+                #current_image_for_edit[data-imgid="0"]{
+                  display:inline-block;
+                  text-align:center;
+                }
+                
+                .dummy_post_box{
+                  height:100%;
+                  width:100%;
+                  padding:100px 0;
+                  background:grey;
+                  opacity:0.5;
+                  text-align:center;
+                  color:white;
+                  font-size:30px;
+                  @media only screen and (min-width: 768px) {
+                    padding:210px 0;
+                  }
+                }
               }
             }
           }

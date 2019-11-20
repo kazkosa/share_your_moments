@@ -15,16 +15,11 @@
         / Select an image
         .field.newpost_image
           .image_box_for_edit
-            .image_box_inner
-              - if @post.image.url
-                = image_tag @post.image.url ,id:"current_image_for_edit"
-              - elsif @post.post_images.first.image.present?
-                - @post.post_images.each do |post_image|
-                  = image_tag post_image.image.url ,id:"current_image_for_edit", class: "filter-#{@post.image_option}"
-              - else
-                .dummy_post_box
-                  -# .dummy_post_box_content
-                  No image
+            .image_box_frame
+              %ul.image_box_inner
+                %li.image_box_inner_image
+                  .dummy_post_box
+                    No image
           .input_post_wrapper
             / Display the image selected by user 
             .input_box.step1
